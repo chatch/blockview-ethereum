@@ -1,4 +1,4 @@
-package net.blockview;
+package net.blockview.ethereum;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
-import net.blockview.endpoints.BlockEndPoint;
+import net.blockview.ethereum.endpoints.AccountEndPoint;
+import net.blockview.ethereum.endpoints.BlockEndPoint;
+import net.blockview.ethereum.endpoints.TxEndPoint;
 
 @Component
 @ApplicationPath("/api")
@@ -20,7 +22,9 @@ public class JerseyConfig extends ResourceConfig {
 	}
 
 	private void registerEndpoints() {
+		register(AccountEndPoint.class);
 		register(BlockEndPoint.class);
+		register(TxEndPoint.class);
 	}
 
 	private void configureSwagger() {
@@ -35,7 +39,7 @@ public class JerseyConfig extends ResourceConfig {
 		beanConfig.setSchemes(new String[] { "http" });
 		beanConfig.setHost("localhost:8080");
 		beanConfig.setBasePath("/api");
-		beanConfig.setResourcePackage("net.blockview.ethereum");
+		beanConfig.setResourcePackage("net.blockview.ethereum.endpoints");
 		beanConfig.setPrettyPrint(true);
 		beanConfig.setScan(true);
 	}
