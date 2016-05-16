@@ -13,8 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jayway.restassured.RestAssured;
 
-import net.blockview.ethereum.BlockviewApplication;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BlockviewApplication.class)
 @WebIntegrationTest(randomPort = true)

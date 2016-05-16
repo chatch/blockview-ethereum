@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="ALL"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/all.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/all-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="BLOCKVIEW"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/blockview.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/blockview-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="ETH"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/eth.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/eth-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="ALL" />
+	</root>
+
+	<!--  Blockview app logging -->
+	
+	<logger level="INFO" name="net.blockview">
+		<appender-ref ref="BLOCKVIEW" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger level="INFO" name="org.springframework.boot">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<!--  Ethereum logging -->
+	
+	<logger level="ERROR" name="general">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="INFO" name="net">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="OFF" name="wire">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="INFO" name="sync">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="INFO" name="blockqueue">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="WARN" name="VM">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="WARN" name="state">
+		<appender-ref ref="ETH" />
+	</logger>
+
+</configuration>
