@@ -24,7 +24,7 @@
 		<swagger.version>1.5.8</swagger.version>
 		<swagger-ui.version>2.1.4</swagger-ui.version>
 		<jersey.version>2.22.2</jersey.version>
-		<ethereumj.version>1.2.5-RELEASE</ethereumj.version>
+		<ethereumj.version>1.2.5-SNAPSHOT</ethereumj.version>
 		<logback.version>1.1.7</logback.version>
 	</properties>
 
@@ -34,11 +34,13 @@
 			<name>Central Repository</name>
 			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
+		<!-- Using a local SNAPSHOT currently - uncomment this to pick up '-RELEASE' version
 		<repository>
 			<id>oss.jfrog.org</id>
 			<name>Repository from Bintray</name>
 			<url>http://dl.bintray.com/ethereum/maven</url>
 		</repository>
+		 -->
 	</repositories>
 
 	<dependencies>
@@ -57,12 +59,26 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
+			<version>${logback.version}</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.ethereum</groupId>
 			<artifactId>ethereumj-core</artifactId>
 			<version>${ethereumj.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>log4j-over-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>io.swagger</groupId>

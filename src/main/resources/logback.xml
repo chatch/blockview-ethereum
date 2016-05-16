@@ -60,7 +60,7 @@
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>WARN</level>
+			<level>INFO</level>
 		</filter>
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
@@ -70,6 +70,7 @@
 
 	<root level="INFO">
 		<appender-ref ref="ALL" />
+		<appender-ref ref="ALL" />
 	</root>
 
 	<!--  Blockview app logging -->
@@ -78,7 +79,7 @@
 		<appender-ref ref="BLOCKVIEW" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger level="INFO" name="org.springframework.boot">
+	<logger level="INFO" name="org.springframework">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
@@ -102,7 +103,7 @@
 	<logger level="WARN" name="VM">
 		<appender-ref ref="ETH" />
 	</logger>
-	<logger level="WARN" name="state">
+	<logger level="INFO" name="state">
 		<appender-ref ref="ETH" />
 	</logger>
 
