@@ -70,22 +70,21 @@
 
 	<root level="INFO">
 		<appender-ref ref="ALL" />
-		<appender-ref ref="ALL" />
+		<appender-ref ref="STDOUT" />
 	</root>
 
 	<!--  Blockview app logging -->
 	
-	<logger level="INFO" name="net.blockview">
+	<logger level="DEBUG" name="net.blockview">
 		<appender-ref ref="BLOCKVIEW" />
-		<appender-ref ref="STDOUT" />
 	</logger>
 	<logger level="INFO" name="org.springframework">
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="BLOCKVIEW" />
 	</logger>
 
 	<!--  Ethereum logging -->
 	
-	<logger level="ERROR" name="general">
+	<logger level="INFO" name="general">
 		<appender-ref ref="ETH" />
 	</logger>
 	<logger level="INFO" name="net">
@@ -104,6 +103,9 @@
 		<appender-ref ref="ETH" />
 	</logger>
 	<logger level="INFO" name="state">
+		<appender-ref ref="ETH" />
+	</logger>
+	<logger level="INFO" name="facade">
 		<appender-ref ref="ETH" />
 	</logger>
 

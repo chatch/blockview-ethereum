@@ -6,3 +6,5 @@
 # maven
 target/
 
+# blockview
+logs/

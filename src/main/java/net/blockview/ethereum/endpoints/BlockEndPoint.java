@@ -6,6 +6,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.ethereum.core.Block;
+import org.ethereum.jsonrpc.JsonRpc.BlockResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +24,9 @@ public class BlockEndPoint {
 
 	@GET
 	@Path("{id}")
-	@ApiOperation(value = "Get details for a block", response = Block.class)
-	public Block get(@PathParam("id") String id) throws Exception {
-		// return eth.getBlockByHash(id);
-		return eth.getBestBlock();
+	@ApiOperation(value = "Get details for a block by number, hash, 'latest' or 'genesis'", response = Block.class)
+	public BlockResult get(@PathParam("id") String id) throws Exception {
+		return eth.getBlock(id);
 	}
+
 }
